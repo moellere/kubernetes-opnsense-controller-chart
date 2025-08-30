@@ -5,8 +5,8 @@
 opnsense:
   url: http://192.168.1.1
   insecure: true
-  username: "admin"
-  password: "opnsense"
+  apiKey: "dummy-key"
+  apiSecret: "dummy-secret"
 
 # The remainder of the config from the example has been copied below to meet your needs
 # this can be customized as required
