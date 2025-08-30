@@ -4,6 +4,21 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
+    inputs:
+      loglevel:
+        description: 'Log level'
+        required: true
+        default: 'info'
+        type: choice
+        options:
+        - info
+        - warning
+        - debug
+      version:
+        description: 'The version to release (e.g., 1.2.3)'
+        required: true
+        type: string
 
 jobs:
   release:
