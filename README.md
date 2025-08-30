@@ -5,6 +5,6 @@ This is a direct fork of travisghansen/kubernetes-pfsense-controller-chart, whic
 Chart to install `kubernetes-opnsense-controller`
 
 ```
-helm repo add kubernetes-pfsense-controller https://moellere.github.io/kubernetes-opnsense-controller-chart/
+helm repo add kubernetes-opnsense-controller https://moellere.github.io/kubernetes-opnsense-controller-chart/
 helm repo update
 ```
