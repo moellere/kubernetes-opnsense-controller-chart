@@ -36,18 +36,15 @@ spec:
               value: {{ include "kubernetes-opnsense-controller.fullname" . }}
             - name: CONTROLLER_NAMESPACE
               value: {{ .Release.Namespace }}
-            - name: opnsense_URL
+            - name: OPNSENSE_URL
               value: {{ .Values.opnsense.url | quote }}
-              # allow self-signed certs
-            - name: opnsense_INSECURE
-              value: {{ .Values.opnsense.insecure | quote }}
-            - name: opnsense_USERNAME
-              value: {{ .Values.opnsense.username | quote }}
-            - name: opnsense_PASSWORD
+            - name: OPNSENSE_API_KEY
+              value: {{ .Values.opnsense.apiKey | quote }}
+            - name: OPNSENSE_API_SECRET
               valueFrom:
                 secretKeyRef:
                   name: {{ include "kubernetes-opnsense-controller.fullname" . }}
-                  key: opnsense-password
+                  key: opnsense-api-secret
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
