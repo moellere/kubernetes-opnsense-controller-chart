@@ -1,15 +1,15 @@
-# Default values for kubernetes-pfsense-controller.
+# Default values for kubernetes-opnsense-controller.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-pfsense:
+opnsense:
   url: http://192.168.1.1
   insecure: true
   username: "admin"
-  password: "pfsense"
+  password: "opnsense"
 
 # you MUST copy the remainder of the config from example to meet your needs
-# https://github.com/travisghansen/kubernetes-pfsense-controller/blob/master/deploy/config.yaml 
+# https://github.com/moellere/kubernetes-opnsense-controller/blob/master/deploy/config.yaml 
 config: {}
 #  controller-id: "my-cluster"
 #  enabled: true
@@ -20,7 +20,7 @@ config: {}
 replicaCount: 1
 
 image:
-  repository: docker.io/travisghansen/kubernetes-pfsense-controller
+  repository: docker.io/moellere/kubernetes-opnsense-controller
   pullPolicy: Always
   #pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.

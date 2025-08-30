@@ -1,14 +1,14 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "kubernetes-pfsense-controller.fullname" . }}
+  name: {{ include "kubernetes-opnsense-controller.fullname" . }}
   labels:
-    {{- include "kubernetes-pfsense-controller.labels" . | nindent 4 }}
+    {{- include "kubernetes-opnsense-controller.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      {{- include "kubernetes-pfsense-controller.selectorLabels" . | nindent 6 }}
+      {{- include "kubernetes-opnsense-controller.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -16,13 +16,13 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "kubernetes-pfsense-controller.selectorLabels" . | nindent 8 }}
+        {{- include "kubernetes-opnsense-controller.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "kubernetes-pfsense-controller.serviceAccountName" . }}
+      serviceAccountName: {{ include "kubernetes-opnsense-controller.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
@@ -33,21 +33,21 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             - name: CONTROLLER_NAME
-              value: {{ include "kubernetes-pfsense-controller.fullname" . }}
+              value: {{ include "kubernetes-opnsense-controller.fullname" . }}
             - name: CONTROLLER_NAMESPACE
               value: {{ .Release.Namespace }}
-            - name: PFSENSE_URL
-              value: {{ .Values.pfsense.url | quote }}
+            - name: opnsense_URL
+              value: {{ .Values.opnsense.url | quote }}
               # allow self-signed certs
-            - name: PFSENSE_INSECURE
-              value: {{ .Values.pfsense.insecure | quote }}
-            - name: PFSENSE_USERNAME
-              value: {{ .Values.pfsense.username | quote }}
-            - name: PFSENSE_PASSWORD
+            - name: opnsense_INSECURE
+              value: {{ .Values.opnsense.insecure | quote }}
+            - name: opnsense_USERNAME
+              value: {{ .Values.opnsense.username | quote }}
+            - name: opnsense_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: {{ include "kubernetes-pfsense-controller.fullname" . }}
-                  key: pfsense-password
+                  name: {{ include "kubernetes-opnsense-controller.fullname" . }}
+                  key: opnsense-password
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}

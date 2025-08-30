@@ -3,9 +3,9 @@
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: {{ include "kubernetes-pfsense-controller.fullname" . }}-{{ .Release.Namespace }}
+  name: {{ include "kubernetes-opnsense-controller.fullname" . }}-{{ .Release.Namespace }}
   labels:
-    {{- include "kubernetes-pfsense-controller.labels" . | nindent 4 }}
+    {{- include "kubernetes-opnsense-controller.labels" . | nindent 4 }}
 rules:
 - apiGroups:
   - ""
@@ -39,15 +39,15 @@ rules:
 kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: {{ include "kubernetes-pfsense-controller.fullname" . }}-{{ .Release.Namespace }}
+  name: {{ include "kubernetes-opnsense-controller.fullname" . }}-{{ .Release.Namespace }}
   labels:
-    {{- include "kubernetes-pfsense-controller.labels" . | nindent 4 }}
+    {{- include "kubernetes-opnsense-controller.labels" . | nindent 4 }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: {{ include "kubernetes-pfsense-controller.fullname" . }}-{{ .Release.Namespace }}
+  name: {{ include "kubernetes-opnsense-controller.fullname" . }}-{{ .Release.Namespace }}
 subjects:
 - kind: ServiceAccount
-  name: {{ include "kubernetes-pfsense-controller.serviceAccountName" . }}
+  name: {{ include "kubernetes-opnsense-controller.serviceAccountName" . }}
   namespace: {{ .Release.Namespace }}
 {{- end }}

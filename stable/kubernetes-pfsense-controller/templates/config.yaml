@@ -2,9 +2,9 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ include "kubernetes-pfsense-controller.fullname" . }}-config
+  name: {{ include "kubernetes-opnsense-controller.fullname" . }}-config
   labels:
-    {{- include "kubernetes-pfsense-controller.labels" . | nindent 4 }}
+    {{- include "kubernetes-opnsense-controller.labels" . | nindent 4 }}
 data:
   config: |
 {{ .Values.config | toYaml | indent 4 }}
