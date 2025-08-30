@@ -1,0 +1,147 @@
+# Default values for kubernetes-opnsense-controller.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+opnsense:
+  url: http://192.168.1.1
+  insecure: true
+  username: "admin"
+  password: "opnsense"
+
+# The remainder of the config from the example has been copied below to meet your needs
+# this can be customized as required
+# https://github.com/moellere/kubernetes-opnsense-controller/blob/master/deploy/config.yaml
+config:
+  controller-id: "my-cluster"
+  enabled: true
+  plugins:
+    metallb:
+      enabled: true
+      nodeLabelSelector:
+      nodeFieldSelector:
+      #configMap: "metallb-system/config"
+      # pick 1 implementation
+      bgp-implementation: openbgp
+      # bgp-implementation: frr
+      options:
+        openbgp:
+          # pass through to config.xml
+          template:
+            md5sigkey:
+            md5sigpass:
+            groupname: metallb
+            row:
+              - parameters: announce all
+                parmvalue:
+        frr:
+          template:
+            peergroup: metallb
+    haproxy-declarative:
+      enabled: true
+    haproxy-ingress-proxy:
+      enabled: true
+      ingressLabelSelector:
+      ingressFieldSelector:
+      # works in conjunction with the ingress annotation 'haproxy-ingress-proxy.opnsense.org/enabled'
+      # if defaultEnabled is empty or true, you can disable specific ingresses by setting the annotation to false
+      # if defaultEnabled is false, you can enable specific ingresses by setting the annotation to true
+      defaultEnabled: true
+      defaultFrontend: http-80
+      defaultBackend: traefik
+      # by default anything is allowed
+      #allowedHostRegex: "/.*/"
+    opnsense-dns-services:
+      enabled: true
+      serviceLabelSelector:
+      serviceFieldSelector:
+      #allowedHostRegex: "/.*/"
+      dnsBackends:
+        dnsmasq:
+          enabled: true
+        unbound:
+          enabled: true
+    opnsense-dns-ingresses:
+      enabled: true
+      ingressLabelSelector:
+      ingressFieldSelector:
+      # works in conjunction with the ingress annotation 'dns.opnsense.org/enabled'
+      # if defaultEnabled is empty or true, you can disable specific ingresses by setting the annotation to false
+      # if defaultEnabled is false, you can enable specific ingresses by setting the annotation to true
+      defaultEnabled: true
+      #allowedHostRegex: "/.*/"
+      dnsBackends:
+        dnsmasq:
+          enabled: true
+        unbound:
+          enabled: true
+    opnsense-dns-haproxy-ingress-proxy:
+      enabled: true
+      #allowedHostRegex: "/.*/"
+      dnsBackends:
+        dnsmasq:
+          enabled: true
+        unbound:
+          enabled: true
+      frontends:
+        http-80:
+          hostname: http-80.k8s
+        primary_frontend_name2:
+          hostname: some-name.k8s
+
+# do NOT set this higher than 1
+# it is only an option to allow scaling to 0
+replicaCount: 1
+
+image:
+  repository: docker.io/moellere/kubernetes-opnsense-controller
+  pullPolicy: Always
+  #pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "latest"
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+rbac:
+  enabled: true
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
