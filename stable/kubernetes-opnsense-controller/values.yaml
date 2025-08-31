@@ -15,8 +15,11 @@ config:
   controller-id: "my-cluster"
   enabled: true
   plugins:
+    # The metallb plugin was removed from the controller application,
+    # but the helm chart was not updated.
+    # Disabling it to prevent a fatal error on startup.
     metallb:
-      enabled: true
+      enabled: false
       nodeLabelSelector:
       nodeFieldSelector:
       #configMap: "metallb-system/config"
