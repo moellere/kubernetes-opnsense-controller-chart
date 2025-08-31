@@ -1,3 +1,6 @@
+# 0.1.6
+- Damnit, this time maybe it will work.  Config.yaml update to remove -config.
+
 # 0.1.5
 - Configmap reference name update in deployment.yaml
 
