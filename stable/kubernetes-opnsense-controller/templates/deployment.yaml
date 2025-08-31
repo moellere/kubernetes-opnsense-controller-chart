@@ -33,7 +33,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             - name: CONTROLLER_NAME
-              value: {{ include "kubernetes-opnsense-controller.fullname" . }}
+              value: {{ include "kubernetes-opnsense-controller.fullname" . }}-config
             - name: CONTROLLER_NAMESPACE
               value: {{ .Release.Namespace }}
             - name: OPNSENSE_URL
