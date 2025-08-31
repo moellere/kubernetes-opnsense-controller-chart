@@ -1,3 +1,6 @@
+# 0.1.7
+- Sigh, more configmap changes.  That's what I get for not just doing the chart from scratch.
+
 # 0.1.6
 - Damnit, this time maybe it will work.  Config.yaml update to remove -config.
 
