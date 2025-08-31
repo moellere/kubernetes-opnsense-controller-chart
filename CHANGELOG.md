@@ -1,3 +1,6 @@
+# 0.1.9
+- App updates - full plugin implementation, so this is a helm chart update
+
 # 0.1.8
 - App updates - full plugin implementation, so this is a helm chart update
 
