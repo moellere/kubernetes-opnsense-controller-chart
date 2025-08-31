@@ -1,3 +1,6 @@
+# 0.2.0
+- Somehow the config.yaml reference came back
+
 # 0.1.9
 - App updates - full plugin implementation, so this is a helm chart update
 

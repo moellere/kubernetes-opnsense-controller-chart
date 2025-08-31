@@ -6,5 +6,5 @@ metadata:
   labels:
     {{- include "kubernetes-opnsense-controller.labels" . | nindent 4 }}
 data:
-  config.yaml: |
+  config: |
 {{ .Values.config | toYaml | indent 4 }}
