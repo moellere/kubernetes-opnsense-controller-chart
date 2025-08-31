@@ -1,3 +1,6 @@
+# 0.1.8
+- App updates - full plugin implementation, so this is a helm chart update
+
 # 0.1.7
 - Sigh, more configmap changes.  That's what I get for not just doing the chart from scratch.
 
