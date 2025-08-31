@@ -3,6 +3,16 @@ entries:
   kubernetes-opnsense-controller:
   - apiVersion: v2
     appVersion: 0.2.1
+    created: "2025-08-31T04:51:18.804779499Z"
+    description: A Helm chart for Kubernetes
+    digest: 23482d2252719cbb7900ba9c51c5bb4764971cb784eb1f967a9e0a355f1eadac
+    name: kubernetes-opnsense-controller
+    type: application
+    urls:
+    - https://github.com/moellere/kubernetes-opnsense-controller-chart/releases/download/kubernetes-opnsense-controller-0.1.6/kubernetes-opnsense-controller-0.1.6.tgz
+    version: 0.1.6
+  - apiVersion: v2
+    appVersion: 0.2.1
     created: "2025-08-31T04:41:23.485203668Z"
     description: A Helm chart for Kubernetes
     digest: 7f77c0bb09efd730ea8a60486b71c50127ed816a0264c531dddaf2e0484827e6
@@ -51,4 +61,4 @@ entries:
     urls:
     - https://github.com/moellere/kubernetes-opnsense-controller-chart/releases/download/kubernetes-opnsense-controller-0.1.1/kubernetes-opnsense-controller-0.1.1.tgz
     version: 0.1.1
-generated: "2025-08-31T04:41:23.485221554Z"
+generated: "2025-08-31T04:51:18.804803855Z"
