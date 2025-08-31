@@ -5,8 +5,8 @@
 opnsense:
   url: http://192.168.1.1
   insecure: true
-  username: "admin"
-  password: "opnsense"
+  apiKey: "dummy-key"
+  apiSecret: "dummy-secret"
 
 # The remainder of the config from the example has been copied below to meet your needs
 # this can be customized as required
@@ -15,8 +15,11 @@ config:
   controller-id: "my-cluster"
   enabled: true
   plugins:
+    # The metallb plugin was removed from the controller application,
+    # but the helm chart was not updated.
+    # Disabling it to prevent a fatal error on startup.
     metallb:
-      enabled: true
+      enabled: false
       nodeLabelSelector:
       nodeFieldSelector:
       #configMap: "metallb-system/config"
